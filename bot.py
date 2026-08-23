@@ -1,6 +1,25 @@
+import os
+from flask import Flask
+from threading import Thread
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
+# --- FLASK SERVER (Render Port Error ለመፍታት) ---
+web_app = Flask('')
+
+@web_app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    port = int(os.environ.get("PORT", 8080))
+    web_app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+# --- BOT CONFIGURATION ---
 BOT_TOKEN = "7721959290:AAEpEOFw8o2QDFgLp3K5M_uMzlmVJLGCaU8"
 CHANNEL_USERNAME = "@MTsibeb"
 ADMIN_ID = 7341220208
@@ -98,6 +117,10 @@ async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data['waiting_for_feedback'] = False
 
 if __name__ == '__main__':
+    # 1. አስቀድሞ Flask ሰርቨሩን ማስነሳት
+    keep_alive()
+    
+    # 2. ቦቱን ማስነሳት
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
