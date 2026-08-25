@@ -20,7 +20,7 @@ def keep_alive():
     t.start()
 
 # --- BOT CONFIGURATION ---
-BOT_TOKEN = "7721959290:AAHrCNY2GVQUSdhObfL3hCGeU6yeQFCw0OA"
+BOT_TOKEN = "7721959290:AAHdoiZBkfm2zVudwKoH4H3D21yV3XieSuU"
 CHANNEL_USERNAME = "@MTsibeb"
 ADMIN_ID = 7341220208
 PHOTO_URL = "https://picsum.photos/800/400"
