@@ -86,9 +86,16 @@ async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             await query.answer("❌ አሁንም ቻናሉን አልተቀላቀሉም! እባክዎን አስቀድመው Join ያድርጉ።", show_alert=True)
 
-    elif query.data == "about":
-        await query.message.reply_text(text="🚀 **ስለ ቦቱ**\n\nይህ በ Python የታገዘ ዘመናዊ የቴሌግራም ቦት ነው።", parse_mode="Markdown")
-    
+        elif query.data == "about":
+        about_text = (
+            "💡 **ስለ ቦቱ**\n\n"
+            "ይህ ቦት የደንበኞቻችንን/የተከታታዮቻችንን ፍላጎት መሰረት በማድረግ የተሰራ ሲሆን፦\n"
+            "• ፈጣን እና ቀልጣፋ ምላሽ ይሰጣል\n"
+            "• ከቻናላችን ጋር በቀጥታ ያገናኝዎታል\n"
+            "• አስተያየት እና ጥያቄዎችን በቀላሉ ያደርሳል"
+        )
+        await query.message.reply_text(text=about_text, parse_mode="Markdown")
+
     elif query.data == "help":
         await query.message.reply_text(text="❓ **እርዳታ**\n\nቦቱን ለመጠቀም ወይም አስተያየት ለመስጠት 'አስተያየት/መልእክት ላክ' የሚለውን አዝራር ይጠቀሙ።", parse_mode="Markdown")
 
